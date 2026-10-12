@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIZENKO DJ Music Organiser</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #171923;
+            color: white;
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #c4a1ff;
+        }
+
+        section {
+            background: #242635;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+        }
+
+        input,
+        button {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin: 6px 0;
+            border-radius: 6px;
+            border: 1px solid #555;
+            font-size: 16px;
+        }
+
+        button {
+            background: #9b70e8;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nummer {
+            border-top: 1px solid #45475a;
+            padding: 12px 0;
+        }
+
+        .melding {
+            color: #b8f5c4;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>LIZENKO</h1>
+    <p>DJ Music Organiser</p>
+
+    {% if melding %}
+    <p class="melding">{{ melding }}</p>
+    {% endif %}
+
+    <section>
+        <h2>Nummer toevoegen</h2>
+
+        <form method="POST">
+            <input name="titel" placeholder="Titel van het nummer" required>
+            <input name="artiest" placeholder="Naam van de artiest" required>
+            <input name="muziekstijl" placeholder="Muziekstijl" required>
+            <button type="submit">Nummer toevoegen</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Nummer zoeken</h2>
+
+        <form method="GET">
+            <input name="zoekterm" placeholder="Zoek op titel..." value="{{ zoekterm }}">
+            <button type="submit">Zoeken</button>
+        </form>
+
+        {% if zoekterm %}
+        <p>Zoekresultaten voor: {{ zoekterm }}</p>
+        {% else %}
+        <p>Je muzieknummers</p>
+        {% endif %}
+
+        {% for nummer in nummers %}
+        <div class="nummer">
+            <strong>{{ nummer.titel }}</strong><br>
+            Artiest: {{ nummer.artiest }}<br>
+            Muziekstijl: {{ nummer.muziekstijl }}
+        </div>
+        {% else %}
+        <p>Geen nummers gevonden.</p>
+        {% endfor %}
+    </section>
+</body>
+
+</html>
