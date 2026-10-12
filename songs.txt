@@ -1,0 +1,3 @@
+LIZENKO_DJ_Music_Organiser/
+├── dj_music.py
+└── songs.txt
