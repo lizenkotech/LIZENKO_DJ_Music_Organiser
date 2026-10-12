@@ -1,7 +1,7 @@
 
 from pathlib import Path
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for  # pyright: ignore[reportMissingImports]
 
 app = Flask(__name__)
 
